@@ -1,4 +1,3 @@
-import os
 import random
 import requests
 
@@ -7,8 +6,13 @@ from bs4 import BeautifulSoup
 
 
 class MoviePicker:
-    def __init__(self, url):
-        self.url = url
+    """
+    Gives random suggestion from top 250
+    IMDB movies.
+    """
+    
+    def __init__(self):
+        self.url = "https://www.imdb.com/chart/top"
         self.movies = {}
         self.fetch_and_store_data()
 
@@ -49,23 +53,3 @@ class MoviePicker:
 
     def random_movie_suggestion(self):
         return self.movies[random.randint(1, 250)]
-
-
-if __name__ == "__main__":
-
-    os.system('cls')
-
-    url = "https://www.imdb.com/chart/top"
-
-    movies = MoviePicker(url)
-
-    while True:
-
-        input("\nPress ENTER for random movie suggestion\n")
-
-        sugg = movies.random_movie_suggestion()
-        print(sugg)
-
-        if input("\nAnother suggestion? (Y/N) --> ").lower() == "n":
-            print("\nFarewell...!\n")
-            break
